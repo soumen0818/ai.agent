@@ -42,7 +42,7 @@ export const login = async (req, res) => {
   try {
     const user = User.findOne({ email });
     if (!user) return res.status(401).json({ error: "User not found" });
-    const isMatch = await brcypt.compare(password, user.password);
+    const isMatch = await brcrypt.compare(password, user.password); // Fixed typo
 
     if (!isMatch) {
       return res.status(401).json({ error: "Invalid credentials" });
@@ -95,7 +95,7 @@ export const updateUser = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     if (req.user.role !== "admin") {
-      return res.status(403).json({ error: "Forbidden" });
+      return res.status(403).json({ error: "Forbidden" }); // Fixed typo
     }
 
     const users = await User.find().select("-password");

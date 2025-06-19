@@ -49,15 +49,11 @@ Ticket information:
 - Title: ${ticket.title}
 - Description: ${ticket.description}`);
 
-  const raw = response.output[0].context;
-
   try {
-    const match = raw.match(/```json\s*([\s\S]*?)\s*```/i);
-    const jsonString = match ? match[1] : raw.trim();
-    return JSON.parse(jsonString);
+    return JSON.parse(response.output[0].context.trim()); // Simplified parsing
   } catch (e) {
     console.log("Failed to parse JSON from AI response" + e.message);
-    return null; // watch out for this
+    return null;
   }
 };
 

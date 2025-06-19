@@ -7,12 +7,15 @@ import ticketRoutes from "./routes/ticket.js";
 import { inngest } from "./inngest/client.js";
 import { onUserSignup } from "./inngest/functions/signup.js";
 import { onTicketCreated } from "./inngest/functions/ticket-create.js";
+import setupCors from "./middlewares/auth.js";
 
 import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+setupCors(app);
 
 app.use(cors());
 app.use(express.json());

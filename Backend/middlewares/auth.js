@@ -1,7 +1,12 @@
 import jwt from "jsonwebtoken";
+import cors from "cors";
 
+const setupCors = (app) => {
+  app.use(cors());
+};
+export default setupCors;
 export const authenticate = (req, res, next) => {
-  const token = req.headers.authorization?.spilt(" ")[1];
+  const token = req.headers.authorization?.split(" ")[1]; // Fixed typo
 
   if (!token) {
     return res.status(401).json({ error: "Access Denied. No token found." });

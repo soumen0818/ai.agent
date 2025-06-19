@@ -32,11 +32,12 @@ export default function SignupPage() {
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/");
       } else {
+        console.error("Signup failed:", data);
         alert(data.message || "Signup failed");
       }
     } catch (err) {
+      console.error("Error during signup:", err);
       alert("Something went wrong");
-      console.error(err);
     } finally {
       setLoading(false);
     }

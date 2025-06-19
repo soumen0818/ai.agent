@@ -9,7 +9,7 @@ export const createTicket = async (req, res) => {
         .status(400)
         .json({ message: "Title and description are required" });
     }
-    const newTicket = Ticket.create({
+    const newTicket = await Ticket.create({ // Added await
       title,
       description,
       createdBy: req.user._id.toString(),
@@ -74,7 +74,7 @@ export const getTicket = async (req, res) => {
     if (!ticket) {
       return res.status(404).json({ message: "Ticket not found" });
     }
-    return res.status(404).json({ ticket });
+    return res.status(200).json({ ticket }); // Fixed response code
   } catch (error) {
     console.error("Error fetching ticket", error.message);
     return res.status(500).json({ message: "Internal Server Error" });
