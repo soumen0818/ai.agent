@@ -105,7 +105,7 @@ export default function AdminPanel() {
             <strong>Current Role:</strong> {user.role}
           </p>
           <p>
-            <strong>Skills:</strong>{" "}
+            <strong>skills:</strong>{" "}
             {user.skills && user.skills.length > 0
               ? user.skills.join(", ")
               : "N/A"}
